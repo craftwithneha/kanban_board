@@ -1,6 +1,3 @@
-
-
-
 export const initialData = {
   columns: {
     todo: {
@@ -72,3 +69,6 @@ export const initialData = {
     }
   }
 };
+
+
+export const getInitialColumns = () => initialData.columns;

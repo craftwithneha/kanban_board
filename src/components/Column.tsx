@@ -2,14 +2,7 @@ import { Plus } from "lucide-react";
 import { useDroppable } from "@dnd-kit/core";
 import { useState } from "react";
 import React from "react";
-
-type Task = {
-  id: string;
-  title: string;
-  description?: string;
-  date?: string;
-  linkedin?: string;
-};
+import type { Task } from "../types/types.ts";
 
 type ColumnProps = {
   id: string;
@@ -26,7 +19,10 @@ export default function Column({ id, title, children, onAddTask }: ColumnProps) 
     title: "",
     description: "",
     date: "",
-    linkedin: ""
+    tag: "Important",
+    avatars: ["/avatars/avatar.png"],
+    linkedin: "",
+    comments: 0
   });
 
   const handleSubmit = () => {
@@ -34,10 +30,14 @@ export default function Column({ id, title, children, onAddTask }: ColumnProps) 
 
     onAddTask?.({
       ...task,
-      id: Date.now().toString()
+      id: Date.now().toString(),
+      tag: task.tag || "Important",
+      avatars: task.avatars && task.avatars.length > 0 ? task.avatars : ["/avatars/avatar.png"],
+      linkedin: task.linkedin || "",
+      comments: typeof task.comments === "number" ? task.comments : 0
     });
 
-    setTask({ id: "", title: "", description: "", date: "", linkedin: "" });
+    setTask({ id: "", title: "", description: "", date: "", tag: "Important", avatars: ["/avatars/avatar.png"], linkedin: "", comments: 0 });
     setAdding(false);
   };
 
@@ -88,7 +88,7 @@ export default function Column({ id, title, children, onAddTask }: ColumnProps) 
         className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md text-sm font-medium"
         onClick={() => {
           setAdding(false);
-          setTask({ id: "", title: "", description: "", date: "", linkedin: "", github: "" });
+          setTask({ id: "", title: "", description: "", date: "", tag: "Important", avatars: ["/avatars/avatar.png"], linkedin: "", comments: 0 });
         }}
       >
         Cancel

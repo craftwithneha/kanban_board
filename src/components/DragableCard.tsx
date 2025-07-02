@@ -2,7 +2,23 @@
 import { useDraggable } from "@dnd-kit/core";
 import TaskCard from "./TaskCard";
 
-export default function DraggableCard({ item, columnId }: any) {
+type DraggableCardProps = {
+  item: {
+    id: string;
+    title: string;
+    description?: string;
+    date?: string;
+    linkedin?: string;
+    github?: string;
+    tag?: "Important" | "High Priority" | "OK" | "Processing";
+    avatars?: string[];
+    comments?: number;
+    index: number;
+  };
+  columnId: string;
+};
+
+export default function DraggableCard({ item, columnId }: DraggableCardProps) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: item.id,
     data: { item, columnId },
