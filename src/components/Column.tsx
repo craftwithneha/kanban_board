@@ -26,6 +26,7 @@ export default function Column({ id, title, children, onAddTask }: ColumnProps) 
   });
 
   const handleSubmit = () => {
+    console.log("handleSubmit called", task, onAddTask);
     if (!task.title) return;
 
     onAddTask?.({
