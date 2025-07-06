@@ -56,7 +56,10 @@ export default function Column({ id, title, children, onAddTask }: ColumnProps) 
         </div>
 
        {adding && (
-  <div className="mb-4 bg-white p-4 rounded-lg shadow-sm text-sm ring-1 ring-gray-200 border-gray-200 animate-fade-in space-y-2">
+  <div
+    className="mb-4 bg-white p-4 rounded-lg shadow-sm text-sm ring-1 ring-gray-200 border-gray-200 animate-fade-in space-y-2"
+    style={{ position: "relative", zIndex: 10, pointerEvents: "auto" }}
+  >
     <input
       placeholder="Project Name"
       className="w-full  border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300"
@@ -80,6 +83,7 @@ export default function Column({ id, title, children, onAddTask }: ColumnProps) 
     <div className="flex gap-4 py-2">
       <button
         className="bg-blue-300 hover:bg-blue-400 text-white px-4 py-2 rounded-md text-sm font-medium"
+        style={{ pointerEvents: "auto" }}
         onClick={handleSubmit}
       >
         Add Task
