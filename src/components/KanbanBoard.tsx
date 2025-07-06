@@ -27,6 +27,7 @@ export default function KanbanBoard() {
   const [columns, setColumns] = useState<Columns>(fixedInitialColumns);
 
   const handleAddTask = (columnId: keyof Columns, task: Task) => {
+    console.log("handleAddTask called", columnId, task);
     setColumns((prev) => ({
       ...prev,
       [columnId]: {
